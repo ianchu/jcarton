@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dr James Carton - Consultant Histopathologist</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Signika:300,600' rel='stylesheet' type='text/css'>
+    <!-- Font awesome  -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+        <!-- Navigation -->
+    <nav class="navbar navbar-custom" role="navigation">
+        <div class="container nav-container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo-style" src="images/logo.png"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav nav-style">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="dermatopathology.html">Dermatopathology</a>
+                    </li>
+                    <li>
+                        <a href="uropathology.html">Uropathology</a>
+                    </li>
+                    <li>
+                        <a href="testimonials.html">Testimonials</a>
+                    </li>
+                    <li>
+                        <a href="#">Refer a case</a>
+                    </li>
+                </ul>
+            </div>
+    <!-- /.navbar-collapse -->
+        </div>
+    <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+
+    <div class="container body">
+
+        <div class="row">
+            <div class="col-sm-12 ">
+
+                <h1 class="h1-center">refer a case</h1>
+                <div class="row">
+                    <p class="copy testimonial"> Dr Carton understands the central importance of a timely and accurate histopathology report in the patient management pathway. He generally aims for a 24-48 hour turnaround time for most specimens. Cases requiring immunohistochemistry or molecular testing may take longer though effort will always be made to provide a provisional report as soon as possible. Dr Carton is available by email or phone for discussion of cases.</p>
+                    <p class="copy testimonial padding-btm">If you are interested in referring a case please complete and submit the form below.</p>
+                </div>
+                <div id="success-message" class="alert alert-success" style="display: none;" role="alert"><strong>Thank you for your message!</strong>  I will get back in touch as soon as possible. Dr James Carton.
+                </div>
+                <div id="fail-message" class="alert alert-danger" style="display: none;" role="alert"><strong>Something went wrong!</strong> Please reload the page and try again.
+                </div>
+                <form data-parsley-validate id="send-form">
+                  <div class="form-group">
+                    <div class="col-sm-6">
+                    <label for="input_name" class="form-heading">Name<span class='asterisk'>*</span></label>
+                    <input type="text" class="form-control" id="input_name" placeholder="Enter your name" data-parsley-trigger="change" required>
+                    </div>
+                    <div class="col-sm-6">
+                    <label for="input_phone" class="form-heading">Phone number</label>
+                    <input type="tel" class="form-control" id="input_phone" placeholder="Enter your phone number">
+                  </div>
+                  </div>
+                  <div class="form-group form-adjustments">
+                    <label for="input_email" class="form-heading">Email address<span class='asterisk'>*</span></label>
+                    <input type="email" class="form-control" id="input_email" placeholder="Enter your email" data-parsley-trigger="change" required>
+                  </div>
+                  <div class="form-group form-adjustments">
+                    <label for="input_message" class="form-heading">Message<span class='asterisk'>*</span></label>
+                    <textarea id="input_message" class="form-control" rows="6" data-parsley-trigger="change" required></textarea>
+                  </div>
+                  <button id="submit_button" data-loading-text="Sending..." type="submit" class="submit">Send email</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.container -->
+    <footer class="footer-color">
+        <div class="disc"> 
+            © 2015 James Carton. Website by Wooshstudios
+        </div>
+    </footer>
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+    <!--[if lte IE 9]>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.3/jquery.xdomainrequest.min.js'></script>
+    <![endif]-->
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/parsley.min.js"></script>
+    <script src="js/en.js"></script>
+    <script src="js/email.js"></script>
+    <script>
+
+      $(document).ready(function() {
+        $.listen('parsley:form:success', function() {sendEmail()});
+        $.listen('parsley:form:error', function() {console.log("invalid form")});
+        $('#send-form').parsley().subscribe('parsley:form:validated', function (formInstance) {
+          $("#submit_button").button('loading')
+          formInstance.submitEvent.preventDefault();
+          if(!formInstance.isValid()) {
+            $("#submit_button").button('reset')
+          }
+        });
+      });
+
+      function matchColumnHeight() {
+        var height = $('.col-sm-6.text-main').height();
+        $('.col-sm-6.img-responsive').height(height);
+      }
+    </script
+</body>
+
+</html>
